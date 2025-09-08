@@ -1,0 +1,13 @@
+services:
+  notion-finance:
+    build:
+      context: ..
+      dockerfile: deployment/Dockerfile
+    container_name: notion-finance
+    ports:
+      - "8501:8501"
+    restart: always
+    environment:
+      TAILSCALE_ADDRESS: ${TAILSCALE_ADDRESS}
+    volumes:
+      - ~/.streamlit:/root/.streamlit

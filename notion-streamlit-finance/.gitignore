@@ -1,0 +1,6 @@
+__pycache__/
+.env/
+.streamlit/
+
+pruebas.py
+add_to_django.py
