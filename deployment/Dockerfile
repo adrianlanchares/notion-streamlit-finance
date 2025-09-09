@@ -2,7 +2,6 @@
 FROM python:3.11-slim
 
 # Set environment variables
-ENV TAILSCALE_ADDRESS=0.0.0.0
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
@@ -20,4 +19,4 @@ COPY . .
 EXPOSE 8501
 
 # Run Streamlit
-CMD streamlit run notion_finance.py --server.port=8501 --server.address=$TAILSCALE_ADDRESS
+CMD streamlit run notion_finance.py --server.port=8501 --server.address=0.0.0.0

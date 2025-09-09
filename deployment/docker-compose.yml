@@ -7,7 +7,5 @@ services:
     ports:
       - "8501:8501"
     restart: always
-    environment:
-      TAILSCALE_ADDRESS: ${TAILSCALE_ADDRESS}
     volumes:
       - ~/.streamlit:/root/.streamlit

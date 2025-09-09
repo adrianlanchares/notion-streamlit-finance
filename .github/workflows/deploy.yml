@@ -25,6 +25,5 @@ jobs:
       # 3. Rebuild and restart Docker containers locally
       - name: Rebuild and restart Docker containers
         run: |
-          export TAILSCALE_ADDRESS=${{ secrets.TAILSCALE_IP }}
           docker compose -f deployment/docker-compose.yml down
           docker compose -f deployment/docker-compose.yml up --build -d
