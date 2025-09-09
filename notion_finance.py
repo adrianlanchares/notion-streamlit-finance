@@ -9,7 +9,7 @@ import os
 import sys
 import subprocess
 
-
+# a
 COMER = {"uber eats", "comida", "monchis", "desayuno", "restaurante"}
 
 notion = Client(auth=st.secrets["NOTION_API_KEY"])
