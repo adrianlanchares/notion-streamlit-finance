@@ -25,7 +25,7 @@ jobs:
 
           # Create config.toml
           cat > ~/.streamlit/config.toml <<EOF
-          ${{ secrets.STREAMLIT_SECRETS_TOML }}
+          ${{ secrets.STREAMLIT_CONFIG_TOML }}
           EOF
           chmod 600 ~/.streamlit/config.toml
 
