@@ -12,17 +12,28 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2. Create Streamlit secrets file locally
-      - name: Create Streamlit secrets
+      # 2. Create Streamlit secrets and config files locally
+      - name: Create Streamlit secrets and config
         run: |
           mkdir -p ~/.streamlit
+
+          # Create secrets.toml
           cat > ~/.streamlit/secrets.toml <<EOF
           ${{ secrets.STREAMLIT_SECRETS_TOML }}
           EOF
-          chmod 700 ~/.streamlit
           chmod 600 ~/.streamlit/secrets.toml
 
-      # 3. Rebuild and restart Docker containers locally
+          # Create config.toml
+          cat > ~/.streamlit/config.toml <<EOF
+          ${{ secrets.STREAMLIT_SECRETS_TOML }}
+          EOF
+          chmod 600 ~/.streamlit/config.toml
+
+          # Secure the directory
+          chmod 700 ~/.streamlit
+ 
+
+        # 3. Rebuild and restart Docker containers locally
       - name: Rebuild and restart Docker containers
         run: |
           docker compose -f deployment/docker-compose.yml down
