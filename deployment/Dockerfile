@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y curl
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Copy dependency file
-COPY uv.lock uv.lock* ./
+COPY pyproject.toml  ./
 
 # Install dependencies with UV
 RUN uv sync
