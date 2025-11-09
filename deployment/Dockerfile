@@ -12,7 +12,7 @@ WORKDIR /app
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Copy dependency file
-COPY uv.yaml uv.lock* ./  # include uv.lock if you have one
+COPY uv.lock uv.lock* ./
 
 # Install dependencies with UV
 RUN uv install
