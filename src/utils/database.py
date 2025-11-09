@@ -1,6 +1,7 @@
+import pandas as pd
 import requests
 
-from typing import Dict, List, Any
+from typing import Dict, Any
 
 BACKEND_URL = "http://finances-backend:8008/transactions"
 
@@ -19,16 +20,20 @@ def get_transaction(id: int) -> Dict[str, Any]:
     return response.json()
 
 
-def get_transaction_list() -> List[Dict[str, Any]]:
+def get_transaction_list(query_params: Dict[str, Any] = {}) -> pd.DataFrame:
     """
     Gets all of the transactions' data
 
     Returns:
         List[Dict[str, Any]]: List of transactions
     """
-    response = requests.get(BACKEND_URL)
+    url_params = "?"
+    for filter in query_params:
+        url_params += f"{filter}={query_params[filter]}&"
 
-    return response.json()
+    response = requests.get(BACKEND_URL + url_params)
+
+    return pd.DataFrame(response.json())
 
 
 def create_transaction(transaction: Dict[str, Any]) -> bool:
