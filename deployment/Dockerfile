@@ -8,9 +8,15 @@ ENV PYTHONUNBUFFERED=1
 # Set work directory
 WORKDIR /app
 
-# Install dependencies
-COPY requirements.txt .
-RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
+# Install UV
+RUN pip install --upgrade pip \
+    && pip install uv-cli
+
+# Copy dependency file
+COPY uv.yaml uv.lock* ./  # include uv.lock if you have one
+
+# Install dependencies with UV
+RUN uv install
 
 # Copy app
 COPY . .
@@ -19,4 +25,5 @@ COPY . .
 EXPOSE 8501
 
 # Run Streamlit
-CMD streamlit run notion_finance.py --server.port=8501 --server.address=0.0.0.0
+CMD ["streamlit", "run", "notion_finance.py", "--server.port=8501", "--server.address=0.0.0.0"]
+
