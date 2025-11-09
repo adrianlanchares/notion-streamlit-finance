@@ -18,7 +18,7 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 COPY uv.lock uv.lock* ./
 
 # Install dependencies with UV
-RUN uv install
+RUN uv sync
 
 # Copy app
 COPY . .
