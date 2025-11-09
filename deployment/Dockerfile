@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y curl
 
 # Install UV
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+RUN source $HOME/.local/bin/env (sh, bash, zsh)
 
 # Copy dependency file
 COPY uv.lock uv.lock* ./
