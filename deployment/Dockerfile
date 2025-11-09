@@ -1,31 +1,19 @@
-# Base image
 FROM python:3.11-slim
 
-# Set environment variables
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
 ENV PATH="/root/.local/bin:$PATH"
 
-# Set work directory
 WORKDIR /app
 
+# Update and install dependencies
 RUN apt-get update && apt-get install -y curl
-
-# Install UV
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
-
-# Copy dependency file
 COPY pyproject.toml  ./
-
-# Install dependencies with UV
 RUN uv sync
 
-# Copy app
 COPY . .
 
-# Expose Streamlit port
 EXPOSE 8501
 
-# Run Streamlit
+# Run app
 CMD ["uv", "run", "streamlit", "run", "notion_finance.py", "--server.port=8501", "--server.address=0.0.0.0"]
 
