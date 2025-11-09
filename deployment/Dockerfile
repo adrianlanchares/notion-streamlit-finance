@@ -8,6 +8,8 @@ ENV PYTHONUNBUFFERED=1
 # Set work directory
 WORKDIR /app
 
+RUN apt-get update && apt-get install -y curl
+
 # Install UV
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 
