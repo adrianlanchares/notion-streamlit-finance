@@ -9,8 +9,7 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /app
 
 # Install UV
-RUN pip install --upgrade pip \
-    && pip install uv-cli
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Copy dependency file
 COPY uv.yaml uv.lock* ./  # include uv.lock if you have one
